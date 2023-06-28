@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.anyulled</groupId>
+    <artifactId>openfeature-provider-unleash</artifactId>
+    <version>0.0.1</version>
+    <name>OpenFeature Provider - Unleash</name>
+    <description>An implementation of the unleash client with the CNCF specification</description>
+    <url>https://github.com/anyulled/openfeature-provider-unleash</url>
+    <inceptionYear>2023</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://spdx.org/licenses/MIT.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>anyulled</id>
+            <name>Anyul Rivas</name>
+            <email>anyulled@gmail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <properties>
+        <!-- encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- language level -->
+        <language.compiler.level>17</language.compiler.level>
+        <maven.compiler.release>${language.compiler.level}</maven.compiler.release>
+
+        <!-- Dependencies versions -->
+        <assertj.version>3.23.1</assertj.version>
+        <openfeature.version>1.0.1</openfeature.version>
+        <slf4j.api.version>2.0.6</slf4j.api.version>
+        <assertj.version>3.23.1</assertj.version>
+        <mockito.version>4.9.0</mockito.version>
+
+        <!-- Plugins versions -->
+        <maven-pmd-plugin.version>3.19.0</maven-pmd-plugin.version>
+        <spotbugs-maven-plugin.version>4.7.3.0</spotbugs-maven-plugin.version>
+        <app.main.class>src.java.feature.anyulled.Main</app.main.class>
+        <slf4j.api.version>1.7.36</slf4j.api.version>
+        <app.distribution.directory>${project.build.directory}/distributions/app</app.distribution.directory>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>dev.openfeature</groupId>
+            <artifactId>sdk</artifactId>
+            <version>${openfeature.version}</version>
+        </dependency><!-- OpenFeature SDK -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.api.version}</version>
+        </dependency><!-- SLF4J API -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>${slf4j.api.version}</version>
+            <optional>true</optional>
+        </dependency><!-- SLF4j JDK -->
+        <dependency>
+            <groupId>io.getunleash</groupId>
+            <artifactId>unleash-client-java</artifactId>
+            <version>8.1.0</version>
+        </dependency><!-- unleash-client -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency><!-- Mockito -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency><!-- AssertJ -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <reuseForks>true</reuseForks>
+                    <forkCount>1</forkCount>
+                    <systemPropertyVariables>
+                        <junit.jupiter.testname.format>snake_case</junit.jupiter.testname.format>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin><!-- surefire-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+                    <encoding>UTF-8</encoding>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+            </plugin><!-- maven-checkstyle-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${maven-pmd-plugin.version}</version>
+                <configuration>
+                    <excludeRoots>${basedir}/target/generated-sources/</excludeRoots>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>run-pmd</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin><!-- maven-pmd-plugin -->
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>${spotbugs-maven-plugin.version}</version>
+                <configuration>
+                    <excludeFilterFile>spotbugs-exclusions.xml</excludeFilterFile>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.h3xstream.findsecbugs</groupId>
+                            <artifactId>findsecbugs-plugin</artifactId>
+                            <version>1.12.0</version>
+                        </plugin>
+                    </plugins>
+                </configuration>
+                <dependencies>
+                    <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
+                    <dependency>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs</artifactId>
+                        <version>4.7.3</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>run-spotbugs</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin><!-- spotbugs-maven-plugin -->
+           <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.8</version>
+            </plugin><!-- jacoco-maven-plugin -->
+            <plugin>
+                <groupId>org.jreleaser</groupId>
+                <artifactId>jreleaser-maven-plugin</artifactId>
+                <version>1.7.0</version>
+                <inherited>false</inherited>
+                <configuration>
+                    <jreleaser>
+                        <project>
+                            <java>
+                                <mainClass>${app.main.class}</mainClass>
+                            </java>
+                        </project>
+                        <release>
+                            <github>
+                                <owner>anyulled</owner>
+                                <overwrite>true</overwrite>
+                            </github>
+                        </release>
+                        <distributions>
+                            <app>
+                                <artifacts>
+                                    <artifact>
+                                        <path>
+                                            ${app.distribution.directory}/${project.artifactId}-${project.version}.zip
+                                        </path>
+                                    </artifact>
+                                    <artifact>
+                                        <path>
+                                            ${app.distribution.directory}/${project.artifactId}-${project.version}.tar.gz
+                                        </path>
+                                    </artifact>
+                                </artifacts>
+                            </app>
+                        </distributions>
+                    </jreleaser>
+                </configuration>
+            </plugin><!-- JReleaser-plugin -->
+        </plugins>
+    </build>
+</project>

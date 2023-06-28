@@ -67,6 +67,10 @@ jobs:
     # - run: |
     #   echo "Run, Build Application using script"
     #   ./location_of_script_within_repo/buildscript.sh
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: 17
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2

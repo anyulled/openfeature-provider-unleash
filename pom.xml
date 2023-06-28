@@ -91,13 +91,13 @@
             <artifactId>assertj-core</artifactId>
             <version>${assertj.version}</version>
             <scope>test</scope>
-        </dependency>
+        </dependency><!-- AssertJ -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
+            <version>5.10.0-M1</version>
             <scope>test</scope>
-        </dependency><!-- AssertJ -->
+        </dependency><!-- JUnit -->
     </dependencies>
 
     <build>
@@ -120,7 +120,6 @@
                 <version>3.3.0</version>
                 <configuration>
                     <configLocation>checkstyle.xml</configLocation>
-                    <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
                     <linkXRef>false</linkXRef>

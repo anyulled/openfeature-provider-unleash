@@ -45,7 +45,7 @@
         <openfeature.version>1.7.4</openfeature.version>
         <slf4j.api.version>2.0.6</slf4j.api.version>
         <assertj.version>3.25.3</assertj.version>
-        <mockito.version>5.10.0</mockito.version>
+        <mockito.version>5.11.0</mockito.version>
 
         <!-- Plugins versions -->
         <maven-pmd-plugin.version>3.22.0</maven-pmd-plugin.version>

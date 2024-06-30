@@ -48,7 +48,7 @@
         <mockito.version>5.11.0</mockito.version>
 
         <!-- Plugins versions -->
-        <maven-pmd-plugin.version>3.22.0</maven-pmd-plugin.version>
+        <maven-pmd-plugin.version>3.23.0</maven-pmd-plugin.version>
         <spotbugs-maven-plugin.version>4.8.4.0</spotbugs-maven-plugin.version>
         <app.main.class>src.java.feature.anyulled.Main</app.main.class>
         <slf4j.api.version>2.0.13</slf4j.api.version>

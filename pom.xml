@@ -49,7 +49,7 @@
 
         <!-- Plugins versions -->
         <maven-pmd-plugin.version>3.23.0</maven-pmd-plugin.version>
-        <spotbugs-maven-plugin.version>4.8.6.1</spotbugs-maven-plugin.version>
+        <spotbugs-maven-plugin.version>4.8.6.5</spotbugs-maven-plugin.version>
         <app.main.class>src.java.feature.anyulled.Main</app.main.class>
         <slf4j.api.version>2.0.13</slf4j.api.version>
         <app.distribution.directory>${project.build.directory}/distributions/app</app.distribution.directory>

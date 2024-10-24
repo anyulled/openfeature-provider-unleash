@@ -42,7 +42,7 @@
 
         <!-- Dependencies versions -->
         <assertj.version>3.23.1</assertj.version>
-        <openfeature.version>1.9.0</openfeature.version>
+        <openfeature.version>1.12.2</openfeature.version>
         <slf4j.api.version>2.0.6</slf4j.api.version>
         <assertj.version>3.25.3</assertj.version>
         <mockito.version>5.12.0</mockito.version>
